@@ -1,5 +1,5 @@
 from presentation import *
-presi = Presentation("Test", "Test", backgroundImage = "wallpaper.jpg")
+presi = Presentation("Test", "Test", backgroundImage = "wallpaper.jpg", credits = "von Mattis")
 
 
 categ = Category("loltitle") 

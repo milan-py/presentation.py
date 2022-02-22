@@ -132,6 +132,11 @@ HTML_CATEGORY = """
 			</div>
 """
 
+HTML_OWN_CREDITS = """
+        <div id = "fixed">
+            <p>{credits}</p>
+        </div>"""
+
 JAVASCRIPT_HTML_END = """
 <script>
             function zoom(element, scale){

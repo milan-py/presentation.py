@@ -20,11 +20,12 @@ class Category:
 class Presentation:
 
 
-	def __init__(self, title, header, backgroundImage = "", fontFamiliy = "Arial, Helvetica, sans-serif"):
+	def __init__(self, title, header, backgroundImage = "", fontFamiliy = "Arial, Helvetica, sans-serif", credits = ""):
 		self.title = title
 		self.header = header
 		self.backgroundImage = backgroundImage
 		self.fontFamiliy = fontFamiliy
+		self.credits = credits
 
 		self.finalOutput = ""
 		self.categoryString = ""
@@ -38,10 +39,16 @@ class Presentation:
 	def addCategory(self, categ):
 		self.categories.append(categ)
 
+	def addcredits(self):
+		self.finalOutput = self.finalOutput + constants.HTML_OWN_CREDITS.format(credits = self.credits + ((" - " if self.credits != "" else "") + "von Milan Bömer programmiert"))
+
+
 	def initHtml(self):
 		self.finalOutput = self.finalOutput + constants.HTML_HEAD.format(title = self.header, header = self.title)
 
 	def initJss(self):
+		self.addcredits()
+
 		css = constants.CSS_STYLE.replace("backgroundImage", self.backgroundImage).replace("fontFamiliy", self.fontFamiliy)
 		if not self.display:
 			css = css.replace("/* NODISPLAY_PLACEHOLDER */", constants.CSS_NODISPLAY)
