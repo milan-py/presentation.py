@@ -100,14 +100,16 @@ CSS_STYLE = """
 			cursor: default;
 		}
 
+        
 		.center > p, .center > ul, .center > h1{
 			cursor: text;
 		}
-		.center > ul{
-            display: block;
-        }
 
 		/* NODISPLAY_PLACEHOLDER */
+
+        .center > ul, .center p{
+            display: block;
+        }
 	</style>
 """
 

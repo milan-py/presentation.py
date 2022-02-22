@@ -20,6 +20,15 @@
 <ul>
 
 			</div>
+		
+			<div class = "category" onclick = "present(this)">
+			    <h1>loltitle</h1>
+			    <ul>
+	<li>test1</li>
+	<li>test2</li>
+<ul>
+
+			</div>
 
 		</div>
 	<style>
@@ -110,18 +119,20 @@
 			cursor: default;
 		}
 
+        
 		.center > p, .center > ul, .center > h1{
 			cursor: text;
 		}
-		.center > ul{
-            display: block;
-        }
 
 		
 		.category > ul, .category > p{
     	    display: none;
 		}
 
+
+        .center > ul, .center p{
+            display: block;
+        }
 	</style>
 
 <script>

@@ -14,9 +14,7 @@ class Category:
 		self.finalOutput = self.finalOutput + constants.HTML_CATEGORY.format(title = self.title)
 
 	def setContent(self, content):
-		print("debug 0")
 		self.finalOutput = self.finalOutput.replace("categoryBody", content)
-		print(self.finalOutput)
 		
 
 class Presentation:
@@ -39,8 +37,6 @@ class Presentation:
 
 	def addCategory(self, categ):
 		self.categories.append(categ)
-		# print("CATEGORY:")
-		# print(categ.finalOutput)
 
 	def initHtml(self):
 		self.finalOutput = self.finalOutput + constants.HTML_HEAD.format(title = self.header, header = self.title)
@@ -59,7 +55,6 @@ class Presentation:
 		categoryString = ""
 
 		for i in self.categories:
-			# print(f"i.finalOutputs: {i.finalOutput}")
 			categoryString = categoryString + i.finalOutput
 
 		finalString = constants.HTML_CATEGORY_DIV.format(categories = categoryString)
