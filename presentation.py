@@ -1,6 +1,20 @@
 import constants
 
+class Image:
+	def __init__(self, maxHeight = 100, maxWidth = 100, float = "none", width = "none"):
+		self.maxHeight = maxHeight
+		self.maxWidth = maxWidth
+		self.float = float
+		self.width = width
 
+	def setProperties(self, rmaxHeight, rmaxWidth, rWidth, rfloat, string):
+		string = string.replace(rmaxHeight, str(self.maxHeight))
+		string = string.replace(rmaxWidth, str(self.maxWidth))
+		string = string.replace(rWidth, f"{self.width}%" if self.width != "none" else "none")
+		string = string.replace(rfloat, self.float)
+
+		return string
+		
 class Category:
 
 	def __init__(self, title):
@@ -20,17 +34,21 @@ class Category:
 class Presentation:
 
 
-	def __init__(self, title, header, backgroundImage = "", fontFamiliy = "Arial, Helvetica, sans-serif", credits = ""):
+	def __init__(self, title, header, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = ""):
 		self.title = title
 		self.header = header
 		self.backgroundImage = backgroundImage
+		self.backgroundColor = backgroundColor
 		self.fontFamiliy = fontFamiliy
 		self.credits = credits
+
 
 		self.finalOutput = ""
 		self.categoryString = ""
 
 		self.categories = []
+		self.previewImage = Image()
+		self.centerImage = Image()
 
 		self.display = True
 
@@ -49,7 +67,9 @@ class Presentation:
 	def initJss(self):
 		self.addcredits()
 
-		css = constants.CSS_STYLE.replace("backgroundImage", self.backgroundImage).replace("fontFamiliy", self.fontFamiliy)
+		css = constants.CSS_STYLE.replace("backgroundImage", f'url("{self.backgroundImage}")' if self.backgroundImage != "none" else "none")
+		css = css.replace("fontFamiliy", self.fontFamiliy)
+		css = css.replace("backgroundColor", self.backgroundColor)
 		if not self.display:
 			css = css.replace("/* NODISPLAY_PLACEHOLDER */", constants.CSS_NODISPLAY)
 		self.finalOutput = self.finalOutput + css
@@ -68,10 +88,13 @@ class Presentation:
 
 		self.finalOutput = self.finalOutput + finalString
 		
+	def create(self):
+		self.insertCategories()
+		self.initJss()
+		self.finalOutput = self.centerImage.setProperties("centerMaxHeight", "centerMaxwidth", "centerWidth", "centerFloat", self.finalOutput)
+		self.finalOutput = self.previewImage.setProperties("previewMaxHeight", "previewMaxWidth", "previewWidth", "previewFloat", self.finalOutput)
 
 	def out(self, filename):
 		with open(filename, "w", encoding = "utf-8") as f:
 			f.write(self.finalOutput)
 		print(self.finalOutput)
-
-

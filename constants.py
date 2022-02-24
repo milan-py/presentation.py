@@ -19,7 +19,8 @@ CSS_STYLE = """
 			color: #2c2c2c;
 			margin: 0px;
 
-			background-image: url("backgroundImage");
+			background-image: backgroundImage;
+            background-color: backgroundColor;
 			background-repeat: no-repeat;
 			background-attachment: fixed;
 			background-size: cover;
@@ -65,9 +66,10 @@ CSS_STYLE = """
 		.category > img{
 			opacity: 1;
 			border-radius: 10px;
-			max-width: 100%;
-			width:100%;
-			max-height: 100%;
+			max-width: previewMaxWidth%;
+			width: previewWidth;
+			max-height: previewMaxHeight%;
+            float: previewFloat;
 		}
 
 
@@ -95,9 +97,11 @@ CSS_STYLE = """
 		}
 
 		.center > img{
-			max-height: 50%;
-			max-width: 50%;
+			max-height: centerMaxHeight%;
+			max-width: centerMaxwidth%;
+            width: centerWidth;
 			cursor: default;
+            float: centerFloat;
 		}
 
         
@@ -247,4 +251,5 @@ JAVASCRIPT_HTML_END = """
             
         </script>
     </body>
+</html>
 """
