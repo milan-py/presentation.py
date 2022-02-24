@@ -1,6 +1,6 @@
 import constants
 
-class Image:
+class Image: # class for storing css properties for images 
 	def __init__(self, maxHeight = 100, maxWidth = 100, float = "none", width = "none"):
 		self.maxHeight = maxHeight
 		self.maxWidth = maxWidth
@@ -55,10 +55,10 @@ class Presentation:
 		self.initHtml()
 
 	def addCategory(self, categ):
-		self.categories.append(categ)
+		self.categories.append(categ) # adds a category object to a list
 
 	def addcredits(self):
-		self.finalOutput = self.finalOutput + constants.HTML_OWN_CREDITS.format(credits = self.credits + ((" - " if self.credits != "" else "") + "von Milan Bömer programmiert"))
+		self.finalOutput = self.finalOutput + constants.HTML_OWN_CREDITS.format(credits = self.credits + ((" - " if self.credits != "" else "") + "von Milan Bömer programmiert")) # adds credits to the presentation in the bottom left corner
 
 
 	def initHtml(self):
@@ -67,16 +67,16 @@ class Presentation:
 	def initJss(self):
 		self.addcredits()
 
-		css = constants.CSS_STYLE.replace("backgroundImage", f'url("{self.backgroundImage}")' if self.backgroundImage != "none" else "none")
-		css = css.replace("fontFamiliy", self.fontFamiliy)
-		css = css.replace("backgroundColor", self.backgroundColor)
+		css = constants.CSS_STYLE.replace("backgroundImage", f'url("{self.backgroundImage}")' if self.backgroundImage != "none" else "none") # sets the brackground image
+		css = css.replace("fontFamiliy", self.fontFamiliy) # sets the font family
+		css = css.replace("backgroundColor", self.backgroundColor) # set the background color
 		if not self.display:
-			css = css.replace("/* NODISPLAY_PLACEHOLDER */", constants.CSS_NODISPLAY)
-		self.finalOutput = self.finalOutput + css
+			css = css.replace("/* NODISPLAY_PLACEHOLDER */", constants.CSS_NODISPLAY) # removes the content in the category preview
+		self.finalOutput = self.finalOutput + css # adds the css code to the final output
 
 		self.finalOutput = self.finalOutput + constants.JAVASCRIPT_HTML_END
 	
-	def insertCategories(self):
+	def insertCategories(self): # inserts the categories to the output
 		finalString = ""
 
 		categoryString = ""
@@ -88,13 +88,13 @@ class Presentation:
 
 		self.finalOutput = self.finalOutput + finalString
 		
-	def create(self):
+	def create(self): # sets everything up. Has to be executed before out() and after setting all properties
 		self.insertCategories()
 		self.initJss()
 		self.finalOutput = self.centerImage.setProperties("centerMaxHeight", "centerMaxwidth", "centerWidth", "centerFloat", self.finalOutput)
 		self.finalOutput = self.previewImage.setProperties("previewMaxHeight", "previewMaxWidth", "previewWidth", "previewFloat", self.finalOutput)
 
-	def out(self, filename):
+	def out(self, filename): # outputs the code to the console and a file 
 		with open(filename, "w", encoding = "utf-8") as f:
 			f.write(self.finalOutput)
 		print(self.finalOutput)
