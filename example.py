@@ -8,12 +8,16 @@ categ = Category("title")
 categ.setContent("""<ul>
 	<li>test1</li>
 	<li>test2</li>
-<ul>
+</ul>
+<img src = "wallpaper.webp"></img>
 """)
 
 
 presi.addCategory(categ)
 presi.addCategory(categ)
+
+presi.centerImage.maxWidth = 10
+presi.centerImage.float = "right"
 
 presi.display = False
 
