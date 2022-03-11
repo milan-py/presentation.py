@@ -7,33 +7,46 @@ A program written in python for creating a webbrowser presentation
 ## tutorial
 
 ### create Presentation object
-    presentation = Presentation(Title, Header, backgroundImage = Image, credits = Name)
-    
+```py
+presentation = Presentation(Title, Header, backgroundImage = Image, credits = Name)
+```
 ### create a category object
-    category = Category("title") 
-    
+```py
+category = Category("title") 
+```    
 ### set the content of a category
-    categ.setContent("<p>example</p>")
-    
+```py
+categ.setContent("<p>example</p>")
+```
 ### add the categories to the presentation
-    presentation.addCategory(category)
+```py
+presentation.addCategory(category)
+```
     
 ### set image properties of category preview and presented category
-    presentation.centerImage.float = "none"
-    presentation.centerImage.maxWidth = 100
-    presentation.centerImage.maxHeight = 100
-    presentation.centerImage.width = "none"
-    
-    presentation.previewImage.float = "none"
-    presentation.previewImage.maxWidth = 100
-    presentation.previewImage.maxHeight = 100
-    presentation.previewImage.width = "none"
+```py
+presentation.centerImage.float = "none"
+presentation.centerImage.maxWidth = 100
+presentation.centerImage.maxHeight = 100
+presentation.centerImage.width = "none"
+
+presentation.previewImage.float = "none"
+presentation.previewImage.maxWidth = 100
+presentation.previewImage.maxHeight = 100
+presentation.previewImage.width = "none"
+```
     
 ### deactivating preview text
-    presentation.display = False
+```py
+presentation.display = False
+```
     
 ### create the presentation
-    presentation.create()
+```py
+presentation.create()
+```
 
 ### output to a file
-    presentation.out(filename)
+```py
+presentation.out(filename)
+```
