@@ -94,7 +94,10 @@ class Presentation:
 		self.finalOutput = self.centerImage.setProperties("centerMaxHeight", "centerMaxwidth", "centerWidth", "centerFloat", self.finalOutput)
 		self.finalOutput = self.previewImage.setProperties("previewMaxHeight", "previewMaxWidth", "previewWidth", "previewFloat", self.finalOutput)
 
-	def out(self, filename): # outputs the code to the console and a file 
+	def write_html(self, filename, **kwargs): # outputs the code to the console and a file 
 		with open(filename, "w", encoding = "utf-8") as f:
-			f.write(self.finalOutput)
+			if len(kwargs) > 0 and kwargs["compress"] == True:
+				f.write(self.finalOutput.replace("\t", "").replace("    ", "").replace("\n", ""))
+			else:
+				f.write(self.finalOutput)
 		print(self.finalOutput)

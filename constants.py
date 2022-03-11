@@ -157,7 +157,7 @@ JAVASCRIPT_HTML_END = """
             }
 
             function stop(element){
-                var element = document.getElementById("blurred")
+                var element = document.getElementById("blurred");
                 element.id = null;
 
                 
@@ -167,7 +167,7 @@ JAVASCRIPT_HTML_END = """
 
                 setTimeout(() => {
                     element.style.filter = "blur(0)";
-                }, 990)
+                }, 990);
 
                 var categories = document.getElementById("categories");
                 var clone = categories.lastChild;
@@ -179,8 +179,8 @@ JAVASCRIPT_HTML_END = """
 
                 setTimeout(() => {
                     clone.style.opacity = "0";
-                    clone.remove()
-                }, 990)
+                    clone.remove();
+                }, 990);
                 
 
                 var header = document.getElementById("header");
@@ -190,7 +190,7 @@ JAVASCRIPT_HTML_END = """
 
                 setTimeout(() => {
                     header.style.opacity = "1";
-                }, 990) 
+                }, 990);
 
                 console.log(categories.children);
                 for(var i = 0; i < categories.children.length; i++){
@@ -200,8 +200,6 @@ JAVASCRIPT_HTML_END = """
             }
 
             function present(element){
-                
-                // element.nextElementSibling.style.position = "absolute";
                 element.id = "blurred";
 
                 const clone = element.cloneNode(true);
@@ -213,7 +211,7 @@ JAVASCRIPT_HTML_END = """
 
                 setTimeout(() => {
                     element.style.filter = "blur(1rem)";
-                }, 990)
+                }, 990);
 
 
                 clone.style.boxShadow =  "0px 0px 31px 10px rgba(5,5,5,0.65)";
@@ -239,7 +237,7 @@ JAVASCRIPT_HTML_END = """
 
                 setTimeout(() => {
                     header.style.opacity = "0";
-                }, 990) 
+                }, 990);
 
                 var categories = document.getElementById("categories");
                 console.log(categories.children);

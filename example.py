@@ -23,4 +23,4 @@ presi.display = False
 
 presi.create()
 
-presi.out("example.html")
+presi.write_html("example.html")
