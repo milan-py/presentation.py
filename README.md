@@ -48,5 +48,5 @@ presentation.create()
 
 ### output to a file
 ```py
-presentation.out(filename)
+presentation.write_html(filename)
 ```
