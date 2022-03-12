@@ -1,16 +1,16 @@
-from presentation import *
+from Presentation import *
 
 
 presi = Presentation("Test", "header", backgroundImage = "wallpaper.webp", credits = "Creator")
 
 
 categ = Category("title") 
-categ.setContent("""<ul>
+categ.content = """<ul>
 	<li>test1</li>
 	<li>test2</li>
 </ul>
 <img src = "wallpaper.webp"></img>
-""")
+"""
 
 
 presi.addCategory(categ)
