@@ -12,15 +12,15 @@ presentation = Presentation(Title, Header, backgroundImage = Image, credits = Na
 ```
 ### create a category object
 ```py
-category = Category("title") 
+categ = Category("title") 
 ```    
 ### set the content of a category
 ```py
-categ.setContent("<p>example</p>")
+categ.content = "<p>example</p>"
 ```
 ### add the categories to the presentation
 ```py
-presentation.addCategory(category)
+presentation.categories = [categ]
 ```
     
 ### set image properties of category preview and presented category
@@ -48,5 +48,5 @@ presentation.create()
 
 ### output to a file
 ```py
-presentation.write_html(filename)
+presentation.writeHtml(filename)
 ```
