@@ -1,4 +1,4 @@
-import constants
+import Presentation.constants as constants
 
 class Image: # class for storing css properties for images 
 	def __init__(self, maxHeight = 100, maxWidth = 100, float = "none", width = "none"):
@@ -34,7 +34,7 @@ class Category:
 class Presentation:
 
 
-	def __init__(self, title, header, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = ""):
+	def __init__(self, title: str, header: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = ""):
 		self.title = title
 		self.header = header
 		self.backgroundImage = backgroundImage
@@ -54,7 +54,7 @@ class Presentation:
 
 		self.initHtml()
 
-	def addCategory(self, categ):
+	def addCategory(self, categ: Category):
 		self.categories.append(categ) # adds a category object to a list
 
 	def addcredits(self):
@@ -94,7 +94,7 @@ class Presentation:
 		self.finalOutput = self.centerImage.setProperties("centerMaxHeight", "centerMaxwidth", "centerWidth", "centerFloat", self.finalOutput)
 		self.finalOutput = self.previewImage.setProperties("previewMaxHeight", "previewMaxWidth", "previewWidth", "previewFloat", self.finalOutput)
 
-	def write_html(self, filename, **kwargs): # outputs the code to the console and a file 
+	def write_html(self, filename: str, **kwargs): # outputs the code to the console and a file 
 		with open(filename, "w", encoding = "utf-8") as f:
 			if len(kwargs) > 0 and kwargs["compress"] == True:
 				f.write(self.finalOutput.replace("\t", "").replace("    ", "").replace("\n", ""))
