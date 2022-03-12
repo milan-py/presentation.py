@@ -68,7 +68,7 @@ class Presentation:
 		return f"Presentation({self.title}, {self.header}); categories: {', '.join(category.title for category in self.categories)}"
 
 	def __addcredits(self):
-		self.finalOutput = self.finalOutput + constants.HTML_OWN_CREDITS.format(credits = self.credits + ((" - " if self.credits != "" else "") + "von Milan Bömer programmiert")) # adds credits to the presentation in the bottom left corner
+		self.finalOutput = self.finalOutput + constants.HTML_OWN_CREDITS.format(credits = self.credits + ((" - " if self.credits != "" else "") + "gemacht mit presentation.py")) # adds credits to the presentation in the bottom left corner
 
 
 	def __initHtml(self):
@@ -106,7 +106,7 @@ class Presentation:
 
 	def writeHtml(self, filename: str, **kwargs): # outputs the code to a file 
 		with open(filename, "w", encoding = "utf-8") as f:
-			if len(kwargs) > 0 and kwargs["compress"] == True:
+			if len(kwargs) > 0 and kwargs["compressed"] == True:
 				f.write(self.finalOutput.replace("\t", "").replace("    ", "").replace("\n", ""))
 			else:
 				f.write(self.finalOutput)

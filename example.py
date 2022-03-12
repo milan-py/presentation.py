@@ -4,7 +4,7 @@ from Presentation import *
 presi = Presentation("Test", "header", backgroundImage = "wallpaper.webp", credits = "Creator")
 
 
-categ = Category("title") 
+categ = Category("title1") 
 categ.content = """<ul>
 	<li>test1</li>
 	<li>test2</li>
@@ -13,8 +13,11 @@ categ.content = """<ul>
 """
 
 
-presi.addCategory(categ)
-presi.addCategory(categ)
+
+presi.categories.append(categ)
+
+print(categ)
+print(presi)
 
 presi.centerImage.maxWidth = 10
 presi.centerImage.float = "right"
@@ -23,4 +26,4 @@ presi.display = False
 
 presi.create()
 
-presi.write_html("example.html")
+presi.writeHtml("example.html", compressed = True)
