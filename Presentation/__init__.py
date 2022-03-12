@@ -22,13 +22,20 @@ class Category:
 
 		self.finalOutput = ""
 
-		self.insertTitle()
+		self.__insertTitle()
+		self.__content = ""
 
-	def insertTitle(self):
+	def __insertTitle(self):
 		self.finalOutput = self.finalOutput + constants.HTML_CATEGORY.format(title = self.title)
 
-	def setContent(self, content):
+	@property
+	def content(self):
+		return self.__content
+	
+	@content.setter
+	def content(self, content):
 		self.finalOutput = self.finalOutput.replace("categoryBody", content)
+		self.__content = content
 		
 
 class Presentation:
@@ -52,20 +59,17 @@ class Presentation:
 
 		self.display = True
 
-		self.initHtml()
+		self.__initHtml()
 
-	def addCategory(self, categ: Category):
-		self.categories.append(categ) # adds a category object to a list
-
-	def addcredits(self):
+	def __addcredits(self):
 		self.finalOutput = self.finalOutput + constants.HTML_OWN_CREDITS.format(credits = self.credits + ((" - " if self.credits != "" else "") + "von Milan Bömer programmiert")) # adds credits to the presentation in the bottom left corner
 
 
-	def initHtml(self):
+	def __initHtml(self):
 		self.finalOutput = self.finalOutput + constants.HTML_HEAD.format(title = self.header, header = self.title)
 
-	def initJss(self):
-		self.addcredits()
+	def __initJss(self):
+		self.__addcredits()
 
 		css = constants.CSS_STYLE.replace("backgroundImage", f'url("{self.backgroundImage}")' if self.backgroundImage != "none" else "none") # sets the brackground image
 		css = css.replace("fontFamiliy", self.fontFamiliy) # sets the font family
@@ -76,7 +80,7 @@ class Presentation:
 
 		self.finalOutput = self.finalOutput + constants.JAVASCRIPT_HTML_END
 	
-	def insertCategories(self): # inserts the categories to the output
+	def __insertCategories(self): # inserts the categories to the output
 		finalString = ""
 
 		categoryString = ""
@@ -89,8 +93,8 @@ class Presentation:
 		self.finalOutput = self.finalOutput + finalString
 		
 	def create(self): # sets everything up. Has to be executed before out() and after setting all properties
-		self.insertCategories()
-		self.initJss()
+		self.__insertCategories()
+		self.__initJss()
 		self.finalOutput = self.centerImage.setProperties("centerMaxHeight", "centerMaxwidth", "centerWidth", "centerFloat", self.finalOutput)
 		self.finalOutput = self.previewImage.setProperties("previewMaxHeight", "previewMaxWidth", "previewWidth", "previewFloat", self.finalOutput)
 
