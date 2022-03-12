@@ -114,6 +114,30 @@ CSS_STYLE = """
         .center > ul, .center p{
             display: block;
         }
+
+        @media(max-width: 600px){
+            .category{
+                width: 90%;
+                margin-left: 2.5%;
+            }
+
+            .category > h1{
+                font-size: x-large;
+            }
+
+            #categories{
+                margin-left: 0%;
+            }
+
+            .center{
+                top: 15%;
+                left: 23.5%;
+                width: 45%;
+            }
+            .center > h1{
+                font-size: x-large;
+            }
+        }
 	</style>
 """
 
