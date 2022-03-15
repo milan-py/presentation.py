@@ -1,4 +1,5 @@
 import Presentation.constants as constants
+import warnings
 
 class Image: # class for storing css properties for images 
 	def __init__(self, maxHeight = 100, maxWidth = 100, float = "none", width = "none"):
@@ -105,3 +106,11 @@ class Presentation:
 				f.write(self.finalOutput.replace("\t", "").replace("    ", "").replace("\n", ""))
 			else:
 				f.write(self.finalOutput)
+
+	def insertCategories(self, *args):
+		raise AttributeError("insertCategories() and InitJss() are deprecated. Use create() Instead")
+	def initJss(self, *args):
+		raise AttributeError("InitJss() and insertCategories() are deprecated. Use create() Instead")
+	def out(self, filename: str, **kwargs):
+		warnings.warn("out(filename) is deprecated. Use writeHtml(filename) instead")
+		self.writeHtml(filename, **kwargs)
