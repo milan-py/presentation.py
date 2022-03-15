@@ -23,7 +23,7 @@ class Category:
 		self.finalOutput = ""
 
 		self.__insertTitle()
-		self.__content = ""
+		self.content = ""
 
 	def __str__(self):
 		return f"Category({self.title})"
@@ -31,14 +31,8 @@ class Category:
 	def __insertTitle(self):
 		self.finalOutput = self.finalOutput + constants.HTML_CATEGORY.format(title = self.title)
 
-	@property
-	def content(self):
-		return self.__content
-	
-	@content.setter
-	def content(self, content):
-		self.finalOutput = self.finalOutput.replace("categoryBody", content)
-		self.__content = content
+	def setContent(self):
+		self.finalOutput = self.finalOutput.replace("categoryBody", self.content)
 		
 
 class Presentation:
@@ -92,6 +86,7 @@ class Presentation:
 		categoryString = ""
 
 		for i in self.categories:
+			i.setContent()
 			categoryString = categoryString + i.finalOutput
 
 		finalString = constants.HTML_CATEGORY_DIV.format(categories = categoryString)
