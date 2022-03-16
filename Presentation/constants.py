@@ -39,8 +39,6 @@ CSS_STYLE = """
 
 		#categories{
 			margin-left: 1.5%;
-			display: flex;
-            flex-wrap: wrap;
 		}
 
 		.category{
