@@ -39,7 +39,8 @@ CSS_STYLE = """
 
 		#categories{
 			margin-left: 1.5%;
-			/* margin-right: 0; */
+			display: flex;
+            flex-wrap: wrap;
 		}
 
 		.category{
@@ -57,8 +58,6 @@ CSS_STYLE = """
 
 			background-color: rgb(231, 231, 231);
 			border-radius: 10px;
-
-			width: 27%;
 			transform: scale(1);
 
 			float: left;
