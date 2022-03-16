@@ -58,7 +58,7 @@ CSS_STYLE = """
 			background-color: rgb(231, 231, 231);
 			border-radius: 10px;
 
-			width: 30%;
+			width: 27%;
 			transform: scale(1);
 
 			float: left;
