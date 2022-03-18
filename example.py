@@ -15,6 +15,9 @@ categ.content = """<ul>
 
 
 presi.categories.append(categ)
+presi.categories.append(categ)
+presi.categories.append(categ)
+presi.categories.append(categ)
 
 print(categ)
 print(presi)
@@ -26,4 +29,4 @@ presi.display = False
 
 presi.create()
 
-presi.writeHtml("example.html", compressed = True)
+presi.writeHtml("example.html", compressed = False)

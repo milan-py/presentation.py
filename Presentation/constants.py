@@ -41,27 +41,36 @@ CSS_STYLE = """
 			margin-left: 1.5%;
 		}
 
-		.category{
+        .row{
+            display: flex;
+        }
 
-			cursor: pointer;
+        #centercontainer{
+            display: flex;
+            position: fixed;
+            justify-content: center;
+            align-items: center;
+            top: 20%;
+            z-index: 5;
+        }
 
-			margin-top: 10px;
+		.category {
 
-			margin-right: 1%;
+            cursor: pointer;
 
-			padding-left: 15px;
-			padding-right: 15px;
-			padding-top: 5px;
-			padding-bottom: 5px;
+            margin-top: 10px;
 
-			background-color: rgb(231, 231, 231);
-			border-radius: 10px;
+            margin-right: 1%;
 
-			width: 30%;
-			transform: scale(1);
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
 
-			float: left;
-		}
+            background-color: rgb(231, 231, 231);
+            border-radius: 10px;
+            transform: scale(1);
+        }
 		.category > img{
 			opacity: 1;
 			border-radius: 10px;
@@ -89,23 +98,15 @@ CSS_STYLE = """
 		}
 
 		.center{
-			position: fixed;
-
-			left: 35%;
-			top: 22%;
-		}
+            width: 40%;
+            cursor: auto;
+        }
 
 		.center > img{
 			max-height: centerMaxHeight%;
 			max-width: centerMaxwidth%;
             width: centerWidth;
-			cursor: default;
             float: centerFloat;
-		}
-
-        
-		.center > p, .center > ul, .center > h1{
-			cursor: text;
 		}
 
 		/* NODISPLAY_PLACEHOLDER */
@@ -114,27 +115,12 @@ CSS_STYLE = """
             display: block;
         }
 
-        @media(max-width: 600px){
-            .category{
-                width: 90%;
-                margin-left: 2.5%;
+        @media(max-width: 720px){
+            .row{
+                display: block;
             }
-
-            .category > h1{
-                font-size: x-large;
-            }
-
-            #categories{
-                margin-left: 0%;
-            }
-
             .center{
-                top: 15%;
-                left: 23.5%;
-                width: 45%;
-            }
-            .center > h1{
-                font-size: x-large;
+                width: 48%;
             }
         }
 	</style>
@@ -147,16 +133,25 @@ CSS_NODISPLAY = """
 """
 
 
-HTML_CATEGORY_DIV = """
+HTML_CATEGORIES_CENTERCONTAINER = """
+        <div id = "centercontainer">
+                <p></p>
+        </div>
 		<div id = "categories">
 			{categories}
-		</div>""" 
+		</div>"""
 
 HTML_CATEGORY = """		
 			<div class = "category" onclick = "present(this)">
 			    <h1>{title}</h1>
 			    categoryBody
 			</div>
+"""
+
+HTML_ROW = """
+    <div class = "row">
+        {rowcontent}
+    </div>
 """
 
 HTML_OWN_CREDITS = """
@@ -166,109 +161,123 @@ HTML_OWN_CREDITS = """
 
 JAVASCRIPT_HTML_END = """
 <script>
-            function zoom(element, scale){
+            function zoom(element, scale) {
 
-                element.animate([{ transform: "scale(" + scale + ")" }
-                ], {duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)"});
+            element.animate([{ transform: "scale(" + scale + ")" }
+            ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
 
-                setTimeout(() => {element.style.transform = "scale(" + scale + ")";}, 990);
-            }
+            setTimeout(() => { element.style.transform = "scale(" + scale + ")"; }, 990);
+        }
 
-            function test(id){
-                console.log(id);
-                console.log(Array.from(id.parentNode.children).indexOf(id));
-            }
+        function test(id) {
+            console.log(id);
+            console.log(Array.from(id.parentNode.children).indexOf(id));
+        }
 
-            function stop(element){
-                var element = document.getElementById("blurred");
-                element.id = null;
-
-                
-
-                element.animate([{ filter: "blur(0)" }
-                ], {duration: 1000});
-
-                setTimeout(() => {
-                    element.style.filter = "blur(0)";
-                }, 990);
-
-                var categories = document.getElementById("categories");
-                var clone = categories.lastChild;
-
-                zoom(clone, 1);
-
-                clone.animate([{ opacity: "0" }
-                ], {duration: 1000});
-
-                setTimeout(() => {
-                    clone.style.opacity = "0";
-                    clone.remove();
-                }, 990);
-                
-
-                var header = document.getElementById("header");
-                
-                header.animate([{ opacity: "1" }
-                ], {duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)"});
-
-                setTimeout(() => {
-                    header.style.opacity = "1";
-                }, 990);
-
-                console.log(categories.children);
-                for(var i = 0; i < categories.children.length; i++){
-                    console.log("Iteration " + i);
-                    categories.children[i].setAttribute("onclick","present(this)");
-                }
-            }
-
-            function present(element){
-                element.id = "blurred";
-
-                const clone = element.cloneNode(true);
-
-                document.getElementById("categories").appendChild(clone);
-
-                element.animate([{ filter: "blur(1rem)" }
-                ], {duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)"});
-
-                setTimeout(() => {
-                    element.style.filter = "blur(1rem)";
-                }, 990);
+        function stop() {
+            let element = document.getElementById("blurred");
+            element.id = null;
 
 
-                clone.style.boxShadow =  "0px 0px 31px 10px rgba(5,5,5,0.65)";
+
+            element.animate([{ filter: "blur(0)" }
+            ], { duration: 1000 });
+
+            setTimeout(() => {
+                element.style.filter = "blur(0)";
+            }, 990);
+
+            let categories = document.getElementById("categories");
+
+            let centercontainer = document.getElementById("centercontainer");
+
+            let clone = centercontainer.lastChild;
+
+            zoom(clone, 1);
+
+            clone.animate([{ opacity: "0" }
+            ], { duration: 1000 });
+
+            setTimeout(() => {
                 clone.style.opacity = "0";
-                    
-                clone.classList.add("center");
+                clone.remove();
+            }, 990);
 
-                clone.onclick = (element) => {stop(element);};
 
-                zoom(clone, 1.8);
+            let header = document.getElementById("header");
 
-                clone.animate([{ opacity: "1" }
-                ], {duration: 1000});
+            header.animate([{ opacity: "1" }
+            ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
 
-                setTimeout(() => {
-                    clone.style.opacity = "1";
-                }, 990);
+            setTimeout(() => {
+                header.style.opacity = "1";
+            }, 990);
 
-                var header = document.getElementById("header");
-                
-                header.animate([{ opacity: "0" }
-                ], {duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)"});
-
-                setTimeout(() => {
-                    header.style.opacity = "0";
-                }, 990);
-
-                var categories = document.getElementById("categories");
-                console.log(categories.children);
-                for(var i = 0; i < (categories.children.length-1); i++){
-                    console.log("Iteration " + i);
-                    categories.children[i].setAttribute("onclick","");
+            console.log(categories.children);
+            for(let i = 0; i < categories.children.length; i++){
+                for(let y = 0; y < categories.children[i].children.length; y++){
+                    console.log("iteration" + i);
+                    categories.children[i].children[y].setAttribute("onclick", "present(this)");
                 }
             }
+        }
+
+        function present(element) {
+            const clone = element.cloneNode(true);
+            clone.id = "centered";
+            element.id = "blurred";
+
+            document.getElementById("centercontainer").appendChild(clone);
+
+            element.animate([{ filter: "blur(1rem)" }
+            ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
+
+
+            setTimeout(() => {
+                element.style.filter = "blur(1rem)";
+            }, 990);
+
+
+            clone.style.boxShadow = "0px 0px 31px 10px rgba(5,5,5,0.65)";
+            clone.style.opacity = "0";
+
+            clone.classList.add("center");
+
+            clone.onclick = "";
+
+            let eventfunc = event => {
+                let ignore = document.getElementById("centered");
+                if(!(event.target === ignore || ignore.contains(event.target))){
+                    stop();
+                    window.removeEventListener("click", eventfunc);
+                }
+            }
+
+            zoom(clone, 1.8);
+
+            clone.animate([{ opacity: "1" }
+            ], { duration: 1000 });
+
+            setTimeout(() => {
+                clone.style.opacity = "1";
+                window.addEventListener("click", eventfunc);
+                header.style.opacity = "0";
+            }, 990);
+
+            let header = document.getElementById("header");
+
+            header.animate([{ opacity: "0" }
+            ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
+
+            let categories = document.getElementById("categories");
+            console.log(categories.children);
+            for(let i = 0; i < categories.children.length; i++){
+                for(let y = 0; y < categories.children[i].children.length; y++){
+                    console.log("iteration" + i);
+                    categories.children[i].children[y].setAttribute("onclick", "");
+                }
+            }
+        }
             
         </script>
     </body>
