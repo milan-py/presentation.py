@@ -53,6 +53,7 @@ CSS_STYLE = """
             align-items: center;
             top: 20%;
             z-index: 5;
+            width: 100%;
         }
 
 		.category {
@@ -252,7 +253,7 @@ JAVASCRIPT_HTML_END = """
                     stop();
                     window.removeEventListener("click", eventfunc);
                 }
-            }
+            };
 
             zoom(clone, 1.8);
 
