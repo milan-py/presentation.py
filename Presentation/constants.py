@@ -1,6 +1,7 @@
 HTML_HEAD = """<!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta charset="UTF-8">
         <title>{title}</title>
     </head>
@@ -42,7 +43,7 @@ CSS_STYLE = """
 		}
 
         .row{
-            display: flex;
+            display: block;
         }
 
         #centercontainer{
@@ -98,7 +99,7 @@ CSS_STYLE = """
 		}
 
 		.center{
-            width: 40%;
+            width: 45%;
             cursor: auto;
         }
 
@@ -115,12 +116,12 @@ CSS_STYLE = """
             display: block;
         }
 
-        @media(max-width: 720px){
+        @media(min-width: 720px){
             .row{
-                display: block;
+                display: flex;
             }
             .center{
-                width: 48%;
+                width: 40%;
             }
         }
 	</style>
