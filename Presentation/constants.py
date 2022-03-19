@@ -124,8 +124,19 @@ CSS_STYLE = """
             .center{
                 width: 40%;
             }
+
+            /* EQUAL_SIZE_PLACEHOLDER */
         }
 	</style>
+"""
+
+CSS_EQUAL_SIZE = """
+        .category{
+            flex-basis: 100%;
+        }
+        .center{
+            flex-basis: auto;
+        }
 """
 
 CSS_NODISPLAY = """

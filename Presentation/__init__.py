@@ -38,7 +38,7 @@ class Category:
 class Presentation:
 
 
-	def __init__(self, title: str, header: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3):
+	def __init__(self, title: str, header: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = False):
 		self.title = title
 		self.header = header
 		self.backgroundImage = backgroundImage
@@ -46,6 +46,7 @@ class Presentation:
 		self.fontFamiliy = fontFamiliy
 		self.credits = credits
 		self.columns = columns
+		self.equalSize = equalSize
 
 
 		self.htmlOutput = ""
@@ -77,6 +78,8 @@ class Presentation:
 		css = css.replace("backgroundColor", self.backgroundColor) # set the background color
 		if not self.display:
 			css = css.replace("/* NODISPLAY_PLACEHOLDER */", constants.CSS_NODISPLAY) # removes the content in the category preview
+		if self.equalSize:
+			css = css.replace("/* EQUAL_SIZE_PLACEHOLDER */", constants.CSS_EQUAL_SIZE) # sets the categories to a equal size
 		self.htmlOutput = self.htmlOutput + css # adds the css code to the final output
 
 		self.htmlOutput = self.htmlOutput + constants.JAVASCRIPT_HTML_END
