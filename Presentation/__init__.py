@@ -1,20 +1,6 @@
 import Presentation.constants as constants
+from Presentation.elements import *
 
-class Image: # class for storing css properties for images 
-	def __init__(self, maxHeight = 100, maxWidth = 100, float = "none", width = "none"):
-		self.maxHeight = maxHeight
-		self.maxWidth = maxWidth
-		self.float = float
-		self.width = width
-
-	def setProperties(self, rmaxHeight, rmaxWidth, rWidth, rfloat, string):
-		string = string.replace(rmaxHeight, str(self.maxHeight))
-		string = string.replace(rmaxWidth, str(self.maxWidth))
-		string = string.replace(rWidth, f"{self.width}%" if self.width != "none" else "none")
-		string = string.replace(rfloat, self.float)
-
-		return string
-		
 class Category:
 
 	def __init__(self, title):
@@ -36,11 +22,9 @@ class Category:
 		
 
 class Presentation:
-
-
-	def __init__(self, title: str, header: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = False):
-		self.title = title
+	def __init__(self, header: str, title: Header, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = False):
 		self.header = header
+		self.title = title
 		self.backgroundImage = backgroundImage
 		self.backgroundColor = backgroundColor
 		self.fontFamiliy = fontFamiliy
@@ -61,14 +45,14 @@ class Presentation:
 		self.__initHtml()
 
 	def __str__(self):
-		return f"Presentation({self.title}, {self.header}); categories: {', '.join(category.title for category in self.categories)}"
+		return f"Presentation({self.header.content}, {self.title}); categories: {', '.join(category.title for category in self.categories)}"
 
 	def __addcredits(self):
 		self.htmlOutput = self.htmlOutput + constants.HTML_OWN_CREDITS.format(credits = self.credits + ((" - " if self.credits != "" else "") + "gemacht mit presentation.py")) # adds credits to the presentation in the bottom left corner
 
 
 	def __initHtml(self):
-		self.htmlOutput = self.htmlOutput + constants.HTML_HEAD.format(title = self.header, header = self.title)
+		self.htmlOutput = self.htmlOutput + constants.HTML_HEAD.format(title = self.title, header = self.header.content)
 
 	def __initJss(self):
 		self.__addcredits()
@@ -107,8 +91,28 @@ class Presentation:
 	def create(self): # sets everything up. Has to be executed before out() and after setting all properties
 		self.__insertCategories()
 		self.__initJss()
-		self.htmlOutput = self.centerImage.setProperties("centerMaxHeight", "centerMaxwidth", "centerWidth", "centerFloat", self.htmlOutput)
-		self.htmlOutput = self.previewImage.setProperties("previewMaxHeight", "previewMaxWidth", "previewWidth", "previewFloat", self.htmlOutput)
+		self.htmlOutput = self.centerImage.setProperties(self.htmlOutput, 
+			centerMaxHeight = "maxHeight", 
+			centerMaxwidth = "maxWidth", 
+			centerWidth = "width", 
+			centerFloat = "_float"
+		)
+		self.htmlOutput = self.previewImage.setProperties(self.htmlOutput, 
+			previewMaxHeight = "maxHeight", 
+			previewMaxWidth = "maxWidth", 
+			previewWidth = "width", 
+			previewFloat = "_float"
+		)
+		self.htmlOutput = self.header.setProperties(self.htmlOutput, 
+			headerTextAlign = "textAlign", 
+			headerFontSize = "fontSize", 
+			headerMargin = "margin", 
+			headerColor = "color", 
+			headerBackgroundColor = "backgroundColor", 
+			headerPadding = "padding",
+			headerBorderRadius = "borderRadius"
+		)
+
 
 	def writeHtml(self, filename: str, **kwargs): # outputs the code to a file 
 		with open(filename, "w", encoding = "utf-8") as f:

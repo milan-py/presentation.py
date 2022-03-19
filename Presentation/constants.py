@@ -8,7 +8,7 @@ HTML_HEAD = """<!DOCTYPE html>
     <body>
 
         <div id = "header">
-            <h1>{header}</h1>
+            <h1><span>{header}</span></h1>
         </div>
 """
 
@@ -31,12 +31,21 @@ CSS_STYLE = """
 		}
 
 		#header{
-			text-align: center;
-			font-size: xx-large;
-
-			margin-top: 0px;
+			text-align: headerTextAlign;
+			font-size: headerFontSize;
+            
+            margin: headerMargin;
 			margin-bottom: -30px;
+
+            color: headerColor;
+            
 		}
+
+        #header > h1 > span{
+            background-color: headerBackgroundColor;
+            padding: headerPadding;
+            border-radius: headerBorderRadius;
+        }
 
 		#categories{
 			margin-left: 1.5%;
