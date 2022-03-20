@@ -31,20 +31,12 @@ CSS_STYLE = """
 		}
 
 		#header{
-			text-align: headerTextAlign;
-			font-size: headerFontSize;
-            
-            margin: headerMargin;
-			margin-bottom: -30px;
-
-            color: headerColor;
-            
+			font-size: xx-large;
+            text-align: center;
 		}
 
         #header > h1 > span{
-            background-color: headerBackgroundColor;
-            padding: headerPadding;
-            border-radius: headerBorderRadius;
+            headerProperties
         }
 
 		#categories{
@@ -83,12 +75,7 @@ CSS_STYLE = """
             transform: scale(1);
         }
 		.category > img{
-			opacity: 1;
-			border-radius: 10px;
-			max-width: previewMaxWidth%;
-			width: previewWidth;
-			max-height: previewMaxHeight%;
-            float: previewFloat;
+			previewImageProperties
 		}
 
 
@@ -114,10 +101,7 @@ CSS_STYLE = """
         }
 
 		.center > img{
-			max-height: centerMaxHeight%;
-			max-width: centerMaxwidth%;
-            width: centerWidth;
-            float: centerFloat;
+			centerImageProperties
 		}
 
 		/* NODISPLAY_PLACEHOLDER */
@@ -164,7 +148,7 @@ HTML_CATEGORIES_CENTERCONTAINER = """
 		</div>"""
 
 HTML_CATEGORY = """		
-			<div class = "category" onclick = "present(this)">
+			<div class = "category" onclick = "present(this)" style = "{style}">
 			    <h1>{title}</h1>
 			    categoryBody
 			</div>

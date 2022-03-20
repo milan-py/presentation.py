@@ -1,28 +1,11 @@
 import Presentation.constants as constants
 from Presentation.elements import *
 
-class Category:
 
-	def __init__(self, title):
-		self.title = title
-
-		self.htmlOutput = ""
-
-		self.__insertTitle()
-		self.content = ""
-
-	def __str__(self):
-		return f"Category({self.title})"
-
-	def __insertTitle(self):
-		self.htmlOutput = self.htmlOutput + constants.HTML_CATEGORY.format(title = self.title)
-
-	def setContent(self):
-		self.htmlOutput = self.htmlOutput.replace("categoryBody", self.content)
 		
 
 class Presentation:
-	def __init__(self, header: str, title: Header, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = False):
+	def __init__(self, header: Header, title: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = False):
 		self.header = header
 		self.title = title
 		self.backgroundImage = backgroundImage
@@ -74,13 +57,17 @@ class Presentation:
 		
 
 		i = 0
+		print(f"category lenght: {len(self.categories)}")
 		while i < len(self.categories):
+			print(f"i in while: {i}")
 			columnString = ""
-			for column in range(self.columns):
+			for y in range(self.columns):
+				print(f"i in for: {i}, y: {y}")
 				if i >= len(self.categories):
-					continue
+					break
 				self.categories[i].setContent()
 				columnString = columnString + self.categories[i].htmlOutput
+				# open("temp.html", "a", encoding = "utf-8").write(f"======\n{self.categories[i].htmlOutput}\n======")
 				i += 1
 			categoryString = categoryString + constants.HTML_ROW.format(rowcontent = columnString)
 
@@ -91,27 +78,9 @@ class Presentation:
 	def create(self): # sets everything up. Has to be executed before out() and after setting all properties
 		self.__insertCategories()
 		self.__initJss()
-		self.htmlOutput = self.centerImage.setProperties(self.htmlOutput, 
-			centerMaxHeight = "maxHeight", 
-			centerMaxwidth = "maxWidth", 
-			centerWidth = "width", 
-			centerFloat = "_float"
-		)
-		self.htmlOutput = self.previewImage.setProperties(self.htmlOutput, 
-			previewMaxHeight = "maxHeight", 
-			previewMaxWidth = "maxWidth", 
-			previewWidth = "width", 
-			previewFloat = "_float"
-		)
-		self.htmlOutput = self.header.setProperties(self.htmlOutput, 
-			headerTextAlign = "textAlign", 
-			headerFontSize = "fontSize", 
-			headerMargin = "margin", 
-			headerColor = "color", 
-			headerBackgroundColor = "backgroundColor", 
-			headerPadding = "padding",
-			headerBorderRadius = "borderRadius"
-		)
+		self.htmlOutput = self.htmlOutput.replace("centerImageProperties", self.centerImage.formatStyle())
+		self.htmlOutput = self.htmlOutput.replace("previewImageProperties", self.previewImage.formatStyle())
+		self.htmlOutput = self.htmlOutput.replace("headerProperties", self.header.formatStyle())
 
 
 	def writeHtml(self, filename: str, **kwargs): # outputs the code to a file 

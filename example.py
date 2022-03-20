@@ -6,7 +6,7 @@ header.backgroundColor = "black"
 header.padding = "10px"
 header.borderRadius = "10px"
 
-presi = Presentation(header, "title", backgroundImage = "wallpaper.webp", credits = "Creator")
+presi = Presentation(header, "title", backgroundImage = "wallpaper.webp", credits = "Creator", columns = 3)
 
 
 categ1 = Category("title1") 
@@ -18,28 +18,29 @@ categ1.content = """<ul>
 """
 
 categ2 = Category("title1") 
+categ2.style = {"color" : "white", "background-color" : "black"}
 categ2.content = """<ul>
 	<li>test1</li>
 	<li>test2</li>
 </ul>
 """
+presi.previewImage.style["padding"] = "1%"
+presi.previewImage.style["background-color"] = "green"
+
+presi.centerImage.style["width"] = "100%"
+presi.centerImage.style["width"] = "50%"
 
 
 
 presi.categories.append(categ1)
 presi.categories.append(categ2)
-presi.categories.append(categ1)
-presi.categories.append(categ1)
-
-print(categ1)
-print(presi)
-
-presi.centerImage.maxWidth = 10
-presi.centerImage._float = "left"
+presi.categories.append(categ2)
+presi.categories.append(categ2)
+presi.categories.append(categ2)
 
 presi.display = False
 presi.equalSize = True
 
 presi.create()
 
-presi.writeHtml("example.html", compressed = True)
+presi.writeHtml("example.html", compressed = False)
