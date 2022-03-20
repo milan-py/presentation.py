@@ -30,9 +30,7 @@ class Category(Element):
 
 	def setContent(self):
 		self.htmlOutput = ""
-		print(f"output before: {self.htmlOutput if self.htmlOutput != '' else 'Nothing'}")
 		self.htmlOutput = self.htmlOutput + constants.HTML_CATEGORY.format(title = self.title, style = self.formatStyle())
 		self.htmlOutput = self.htmlOutput.replace("categoryBody", self.content)
-		open("temp.html", "a", encoding = "utf-8").write(f"======\n{self.htmlOutput}\n======")
 
 		

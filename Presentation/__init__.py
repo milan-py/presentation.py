@@ -57,12 +57,9 @@ class Presentation:
 		
 
 		i = 0
-		print(f"category lenght: {len(self.categories)}")
 		while i < len(self.categories):
-			print(f"i in while: {i}")
 			columnString = ""
 			for y in range(self.columns):
-				print(f"i in for: {i}, y: {y}")
 				if i >= len(self.categories):
 					break
 				self.categories[i].setContent()
