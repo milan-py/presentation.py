@@ -30,9 +30,12 @@ class Header(Element):
 
 class Category(Element):
 
-	def __init__(self, title, style = {"color" : "black"}):
+	def __init__(self, title, *args):
 		self.title = title
-		self.style = style
+		if len(args) > 0:
+			self.style = args[0]
+		else:
+			self.style = {"color" : "black"}
 		self.content = ""
 
 	def __str__(self):

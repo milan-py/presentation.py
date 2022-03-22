@@ -2,7 +2,7 @@ import Presentation.constants as constants
 import Presentation.elements as elements
 
 class Presentation:
-	def __init__(self, header: elements.Header, title: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = False):
+	def __init__(self, header: elements.Header, title: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = True):
 		self.header = header
 		self.title = title
 		self.backgroundImage = backgroundImage

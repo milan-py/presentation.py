@@ -3,12 +3,12 @@
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta charset="UTF-8">
-        <title>title</title>
+        <title>presentation.py</title>
     </head>
     <body>
 
         <div id = "header">
-            <h1><span>Header</span></h1>
+            <h1><span>A beautiful presentation</span></h1>
         </div>
 
         <div id = "centercontainer">
@@ -20,10 +20,10 @@
         		
 			<div class = "category" onclick = "present(this)" style = "			color: black;
 ">
-			    <h1>title1</h1>
+			    <h1>Categories like this</h1>
 			    <ul>
-	<li>test1</li>
-	<li>test2</li>
+	<li>with just html</li>
+	<li>pictures and everything</li>
 </ul>
 <img src = "wallpaper.webp"></img>
 
@@ -31,22 +31,45 @@
 		
 			<div class = "category" onclick = "present(this)" style = "			color: white;
 			background-color: black;
+			border-radius: 15px 30px 60px 100px;
 ">
-			    <h1>title1</h1>
+			    <h1>or like this</h1>
 			    <ul>
-	<li>test1</li>
-	<li>test2</li>
+	<li>with different colors</li>
+	<li>and different shapes</li>
 </ul>
+
+			</div>
+		
+			<div class = "category" onclick = "present(this)" style = "			color: black;
+">
+			    <h1>With python</h1>
+			    
+<p>
+<pre>
+	<code>
+categ1 = elements.Category("Categories like this")
+categ1.content = '''
+&lt;ul&gt;
+	&lt;li&gt;with just html&lt;/li&gt;
+	&lt;li&gt;pictures and everything&lt;/li&gt;
+	&lt;img src = "wallpaper.webp"&gt;&lt;/img&gt;
+&lt;/ul&gt;
+'''
+	</code>
+</pre>
+</p>
 
 			</div>
 		
 			<div class = "category" onclick = "present(this)" style = "			color: white;
 			background-color: black;
+			border-radius: 15px 30px 60px 100px;
 ">
-			    <h1>title1</h1>
+			    <h1>or like this</h1>
 			    <ul>
-	<li>test1</li>
-	<li>test2</li>
+	<li>with different colors</li>
+	<li>and different shapes</li>
 </ul>
 
 			</div>
@@ -55,25 +78,35 @@
 
     <div class = "row">
         		
-			<div class = "category" onclick = "present(this)" style = "			color: white;
-			background-color: black;
+			<div class = "category" onclick = "present(this)" style = "			color: black;
 ">
-			    <h1>title1</h1>
-			    <ul>
-	<li>test1</li>
-	<li>test2</li>
-</ul>
+			    <h1>With python</h1>
+			    
+<p>
+<pre>
+	<code>
+categ1 = elements.Category("Categories like this")
+categ1.content = '''
+&lt;ul&gt;
+	&lt;li&gt;with just html&lt;/li&gt;
+	&lt;li&gt;pictures and everything&lt;/li&gt;
+	&lt;img src = "wallpaper.webp"&gt;&lt;/img&gt;
+&lt;/ul&gt;
+'''
+	</code>
+</pre>
+</p>
 
 			</div>
 		
-			<div class = "category" onclick = "present(this)" style = "			color: white;
-			background-color: black;
+			<div class = "category" onclick = "present(this)" style = "			color: black;
 ">
-			    <h1>title1</h1>
+			    <h1>Categories like this</h1>
 			    <ul>
-	<li>test1</li>
-	<li>test2</li>
+	<li>with just html</li>
+	<li>pictures and everything</li>
 </ul>
+<img src = "wallpaper.webp"></img>
 
 			</div>
 
@@ -149,10 +182,10 @@
 						max-height: 100%;
 			max-width: 100%;
 			float: none;
-			width: 100%;
+			width: 98%;
 			border-radius: 10px;
 			padding: 1%;
-			background-color: green;
+			background-color: blue;
 
 		}
 
@@ -190,7 +223,7 @@
 
 		/* NODISPLAY_PLACEHOLDER */
 
-        .center > ul, .center p{
+        .center > ul, .center p, .center pre{
             display: block;
         }
 

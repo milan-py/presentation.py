@@ -106,7 +106,7 @@ CSS_STYLE = """
 
 		/* NODISPLAY_PLACEHOLDER */
 
-        .center > ul, .center p{
+        .center > ul, .center p, .center pre{
             display: block;
         }
 
@@ -133,7 +133,7 @@ CSS_EQUAL_SIZE = """
 """
 
 CSS_NODISPLAY = """
-		.category > ul, .category > p{
+		.category > ul, .category > p, .category > pre{
     	    display: none;
 		}
 """
