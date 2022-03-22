@@ -1,11 +1,8 @@
 import Presentation.constants as constants
-from Presentation.elements import *
-
-
-		
+import Presentation.elements as elements
 
 class Presentation:
-	def __init__(self, header: Header, title: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = False):
+	def __init__(self, header: elements.Header, title: str, backgroundImage = "none", backgroundColor = "none", fontFamiliy = "Arial, Helvetica, sans-serif", credits = "", columns = 3, equalSize = False):
 		self.header = header
 		self.title = title
 		self.backgroundImage = backgroundImage
@@ -20,8 +17,8 @@ class Presentation:
 		self.categoryString = ""
 
 		self.categories = []
-		self.previewImage = Image()
-		self.centerImage = Image()
+		self.previewImage = elements.Image()
+		self.centerImage = elements.Image()
 
 		self.display = True
 
