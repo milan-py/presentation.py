@@ -38,7 +38,7 @@ presi.categories.append(categ2)
 presi.categories.append(categ2)
 presi.categories.append(categ2)
 
-presi.display = False
+presi.display = True
 presi.equalSize = True
 
 presi.create()

@@ -4,10 +4,11 @@ class Element:
 	def __init__(self):
 		pass
 
+	@property
 	def formatStyle(self):	
 		string = ""
 		for i in self.style.keys():
-			string = string + f"{i}: {self.style[i]};\n"
+			string = string + f"\t\t\t{i}: {self.style[i]};\n"
 		return string
 
 class Image(Element):
@@ -39,7 +40,7 @@ class Category(Element):
 
 	def setContent(self):
 		self.htmlOutput = ""
-		self.htmlOutput = self.htmlOutput + constants.HTML_CATEGORY.format(title = self.title, style = self.formatStyle())
+		self.htmlOutput = self.htmlOutput + constants.HTML_CATEGORY.format(title = self.title, style = self.formatStyle)
 		self.htmlOutput = self.htmlOutput.replace("categoryBody", self.content)
 
 		

@@ -72,9 +72,9 @@ class Presentation:
 	def create(self): # sets everything up. Has to be executed before out() and after setting all properties
 		self.__insertCategories()
 		self.__initJss()
-		self.htmlOutput = self.htmlOutput.replace("centerImageProperties", self.centerImage.formatStyle())
-		self.htmlOutput = self.htmlOutput.replace("previewImageProperties", self.previewImage.formatStyle())
-		self.htmlOutput = self.htmlOutput.replace("headerProperties", self.header.formatStyle())
+		self.htmlOutput = self.htmlOutput.replace("centerImageProperties", self.centerImage.formatStyle)
+		self.htmlOutput = self.htmlOutput.replace("previewImageProperties", self.previewImage.formatStyle)
+		self.htmlOutput = self.htmlOutput.replace("headerProperties", self.header.formatStyle)
 
 
 	def writeHtml(self, filename: str, **kwargs): # outputs the code to a file 

@@ -186,14 +186,34 @@ JAVASCRIPT_HTML_END = """
 
 
 
-            element.animate([{ filter: "blur(0)" }
-            ], { duration: 1000 });
+            let categories = document.getElementById("categories");
+
+            for(let i = 0; i < categories.children.length; i++){
+                for(let y = 0; y < categories.children[i].children.length; y++){
+                    console.log("iteration" + i);
+                    categories.children[i].children[y].animate([{ filter: "blur(0)" }
+                    ], { duration: 1000 });
+                }
+            }
 
             setTimeout(() => {
-                element.style.filter = "blur(0)";
+                for(let i = 0; i < categories.children.length; i++){
+                    for(let y = 0; y < categories.children[i].children.length; y++){
+                        console.log("iteration" + i);
+                        categories.children[i].children[y].style.filter = "blur(0)";
+                    }
+                }
+                clone.style.opacity = "0";
+                clone.remove();
+                header.style.opacity = "1";
+                console.log(categories.children);
+                for(let i = 0; i < categories.children.length; i++){
+                    for(let y = 0; y < categories.children[i].children.length; y++){
+                        console.log("iteration" + i);
+                        categories.children[i].children[y].setAttribute("onclick", "present(this)");
+                    }
+                }
             }, 990);
-
-            let categories = document.getElementById("categories");
 
             let centercontainer = document.getElementById("centercontainer");
 
@@ -204,28 +224,11 @@ JAVASCRIPT_HTML_END = """
             clone.animate([{ opacity: "0" }
             ], { duration: 1000 });
 
-            setTimeout(() => {
-                clone.style.opacity = "0";
-                clone.remove();
-            }, 990);
-
 
             let header = document.getElementById("header");
 
             header.animate([{ opacity: "1" }
             ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
-
-            setTimeout(() => {
-                header.style.opacity = "1";
-            }, 990);
-
-            console.log(categories.children);
-            for(let i = 0; i < categories.children.length; i++){
-                for(let y = 0; y < categories.children[i].children.length; y++){
-                    console.log("iteration" + i);
-                    categories.children[i].children[y].setAttribute("onclick", "present(this)");
-                }
-            }
         }
 
         function present(element) {
@@ -235,12 +238,27 @@ JAVASCRIPT_HTML_END = """
 
             document.getElementById("centercontainer").appendChild(clone);
 
-            element.animate([{ filter: "blur(1rem)" }
-            ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
+            let categories = document.getElementById("categories");
 
+            for(let i = 0; i < categories.children.length; i++){
+                for(let y = 0; y < categories.children[i].children.length; y++){
+                    console.log("iteration" + i);
+                    categories.children[i].children[y].animate([{ filter: "blur(1rem)" }
+                    ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
+                }
+            }
+
+            setTimeout(() => {window.addEventListener("click", eventfunc);}, 500);
 
             setTimeout(() => {
-                element.style.filter = "blur(1rem)";
+                for(let i = 0; i < categories.children.length; i++){
+                    for(let y = 0; y < categories.children[i].children.length; y++){
+                        console.log("iteration" + i);
+                        categories.children[i].children[y].style.filter = "blur(1rem)";
+                    }
+                }
+                clone.style.opacity = "1";
+                header.style.opacity = "0";
             }, 990);
 
 
@@ -264,18 +282,11 @@ JAVASCRIPT_HTML_END = """
             clone.animate([{ opacity: "1" }
             ], { duration: 1000 });
 
-            setTimeout(() => {
-                clone.style.opacity = "1";
-                window.addEventListener("click", eventfunc);
-                header.style.opacity = "0";
-            }, 990);
-
             let header = document.getElementById("header");
 
             header.animate([{ opacity: "0" }
             ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
 
-            let categories = document.getElementById("categories");
             console.log(categories.children);
             for(let i = 0; i < categories.children.length; i++){
                 for(let y = 0; y < categories.children[i].children.length; y++){

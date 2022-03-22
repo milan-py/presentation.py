@@ -18,7 +18,7 @@
 			
     <div class = "row">
         		
-			<div class = "category" onclick = "present(this)" style = "color: black;
+			<div class = "category" onclick = "present(this)" style = "			color: black;
 ">
 			    <h1>title1</h1>
 			    <ul>
@@ -29,8 +29,8 @@
 
 			</div>
 		
-			<div class = "category" onclick = "present(this)" style = "color: white;
-background-color: black;
+			<div class = "category" onclick = "present(this)" style = "			color: white;
+			background-color: black;
 ">
 			    <h1>title1</h1>
 			    <ul>
@@ -40,8 +40,8 @@ background-color: black;
 
 			</div>
 		
-			<div class = "category" onclick = "present(this)" style = "color: white;
-background-color: black;
+			<div class = "category" onclick = "present(this)" style = "			color: white;
+			background-color: black;
 ">
 			    <h1>title1</h1>
 			    <ul>
@@ -55,8 +55,8 @@ background-color: black;
 
     <div class = "row">
         		
-			<div class = "category" onclick = "present(this)" style = "color: white;
-background-color: black;
+			<div class = "category" onclick = "present(this)" style = "			color: white;
+			background-color: black;
 ">
 			    <h1>title1</h1>
 			    <ul>
@@ -66,8 +66,8 @@ background-color: black;
 
 			</div>
 		
-			<div class = "category" onclick = "present(this)" style = "color: white;
-background-color: black;
+			<div class = "category" onclick = "present(this)" style = "			color: white;
+			background-color: black;
 ">
 			    <h1>title1</h1>
 			    <ul>
@@ -106,7 +106,7 @@ background-color: black;
 		}
 
         #header > h1 > span{
-            margin-bottom: -30px;
+            			margin-bottom: -30px;
 
         }
 
@@ -146,13 +146,13 @@ background-color: black;
             transform: scale(1);
         }
 		.category > img{
-			max-height: 100%;
-max-width: 100%;
-float: none;
-width: 100%;
-border-radius: 10px;
-padding: 1%;
-background-color: green;
+						max-height: 100%;
+			max-width: 100%;
+			float: none;
+			width: 100%;
+			border-radius: 10px;
+			padding: 1%;
+			background-color: green;
 
 		}
 
@@ -179,20 +179,16 @@ background-color: green;
         }
 
 		.center > img{
-			max-height: 100%;
-max-width: 100%;
-float: none;
-width: 50%;
-border-radius: 10px;
-padding: 0%;
+						max-height: 100%;
+			max-width: 100%;
+			float: none;
+			width: 50%;
+			border-radius: 10px;
+			padding: 0%;
 
 		}
 
-		
-		.category > ul, .category > p{
-    	    display: none;
-		}
-
+		/* NODISPLAY_PLACEHOLDER */
 
         .center > ul, .center p{
             display: block;
@@ -237,14 +233,34 @@ padding: 0%;
 
 
 
-            element.animate([{ filter: "blur(0)" }
-            ], { duration: 1000 });
+            let categories = document.getElementById("categories");
+
+            for(let i = 0; i < categories.children.length; i++){
+                for(let y = 0; y < categories.children[i].children.length; y++){
+                    console.log("iteration" + i);
+                    categories.children[i].children[y].animate([{ filter: "blur(0)" }
+                    ], { duration: 1000 });
+                }
+            }
 
             setTimeout(() => {
-                element.style.filter = "blur(0)";
+                for(let i = 0; i < categories.children.length; i++){
+                    for(let y = 0; y < categories.children[i].children.length; y++){
+                        console.log("iteration" + i);
+                        categories.children[i].children[y].style.filter = "blur(0)";
+                    }
+                }
+                clone.style.opacity = "0";
+                clone.remove();
+                header.style.opacity = "1";
+                console.log(categories.children);
+                for(let i = 0; i < categories.children.length; i++){
+                    for(let y = 0; y < categories.children[i].children.length; y++){
+                        console.log("iteration" + i);
+                        categories.children[i].children[y].setAttribute("onclick", "present(this)");
+                    }
+                }
             }, 990);
-
-            let categories = document.getElementById("categories");
 
             let centercontainer = document.getElementById("centercontainer");
 
@@ -255,28 +271,11 @@ padding: 0%;
             clone.animate([{ opacity: "0" }
             ], { duration: 1000 });
 
-            setTimeout(() => {
-                clone.style.opacity = "0";
-                clone.remove();
-            }, 990);
-
 
             let header = document.getElementById("header");
 
             header.animate([{ opacity: "1" }
             ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
-
-            setTimeout(() => {
-                header.style.opacity = "1";
-            }, 990);
-
-            console.log(categories.children);
-            for(let i = 0; i < categories.children.length; i++){
-                for(let y = 0; y < categories.children[i].children.length; y++){
-                    console.log("iteration" + i);
-                    categories.children[i].children[y].setAttribute("onclick", "present(this)");
-                }
-            }
         }
 
         function present(element) {
@@ -286,12 +285,27 @@ padding: 0%;
 
             document.getElementById("centercontainer").appendChild(clone);
 
-            element.animate([{ filter: "blur(1rem)" }
-            ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
+            let categories = document.getElementById("categories");
 
+            for(let i = 0; i < categories.children.length; i++){
+                for(let y = 0; y < categories.children[i].children.length; y++){
+                    console.log("iteration" + i);
+                    categories.children[i].children[y].animate([{ filter: "blur(1rem)" }
+                    ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
+                }
+            }
+
+            setTimeout(() => {window.addEventListener("click", eventfunc);}, 500);
 
             setTimeout(() => {
-                element.style.filter = "blur(1rem)";
+                for(let i = 0; i < categories.children.length; i++){
+                    for(let y = 0; y < categories.children[i].children.length; y++){
+                        console.log("iteration" + i);
+                        categories.children[i].children[y].style.filter = "blur(1rem)";
+                    }
+                }
+                clone.style.opacity = "1";
+                header.style.opacity = "0";
             }, 990);
 
 
@@ -315,18 +329,11 @@ padding: 0%;
             clone.animate([{ opacity: "1" }
             ], { duration: 1000 });
 
-            setTimeout(() => {
-                clone.style.opacity = "1";
-                window.addEventListener("click", eventfunc);
-                header.style.opacity = "0";
-            }, 990);
-
             let header = document.getElementById("header");
 
             header.animate([{ opacity: "0" }
             ], { duration: 1000, easing: "cubic-bezier(.77,0,0,1.06)" });
 
-            let categories = document.getElementById("categories");
             console.log(categories.children);
             for(let i = 0; i < categories.children.length; i++){
                 for(let y = 0; y < categories.children[i].children.length; y++){
