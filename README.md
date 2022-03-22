@@ -6,9 +6,13 @@ A program written in python for creating a webbrowser presentation
 
 ## tutorial
 
+```py
+from Presentation import *
+```
+
 ### create Presentation object
 ```py
-presentation = Presentation(Title, Header, backgroundImage = Image, credits = Name)
+presentation = Presentation(elements.Header("Title"), "Title")
 ```
 ### create a category object
 ```py
@@ -25,20 +29,21 @@ presentation.categories = [categ]
     
 ### set image properties of category preview and presented category
 ```py
-presentation.centerImage.float = "none"
-presentation.centerImage.maxWidth = 100
-presentation.centerImage.maxHeight = 100
-presentation.centerImage.width = "none"
-
-presentation.previewImage.float = "none"
-presentation.previewImage.maxWidth = 100
-presentation.previewImage.maxHeight = 100
-presentation.previewImage.width = "none"
+presi.previewImage.style["padding"] = "1%"
+presi.previewImage.style["width"] = "98%"
+presi.previewImage.style["background-color"] =  "blue"
+presi.centerImage.style["padding"] = "0%"
+presi.centerImage.style["width"] = "50%"
 ```
     
 ### deactivating preview text
 ```py
 presentation.display = False
+```
+
+### setting the categories to the same size
+```py
+presentation.equalSize = True 
 ```
     
 ### create the presentation
