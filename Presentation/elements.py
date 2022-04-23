@@ -1,49 +1,84 @@
-import Presentation.constants as constants
+class NoneError(Exception):
+
+	def __init__(self, message):
+		super().__init__()
+
+	def __str__(self):
+		return f"Presentation NoneError: {self.message}"
 
 class Element:
-	def __init__(self):
-		pass
+	def __init__(self, body = None, css = None):
+		self.css = css
+		self.body = body
+
+	def __str__(self):
+		return "Html Element, Use element.htmlOut for the actual output"
 
 	@property
-	def formatStyle(self):	
-		string = ""
-		for i in self.style.keys():
-			string = string + f"\t\t\t{i}: {self.style[i]};\n"
-		return string
+	def htmlOut(self):
+		return self.childHtml
 
-class Image(Element):
-	def __init__(self, *args):
-		if len(args) > 0:
-			self.style = args[0]
-		else:
-			self.style = {"max-height" : "100%", "max-width" : "100%", "float" : "none", "width" : "none", "border-radius" : "10px"}
+	@property
+	def childHtml(self):
+		return "\n".join(f"\t{i.htmlOut}" for i in self.body)
 
-	def __str__(self):
-		return f"Image style: {self.style}"
-class Header(Element):
-	def __init__(self, content, style = {"margin-bottom" : "-30px"}):
-		self.content = content
-		self.style = style
+	def writeFile(self, file):
+		with open(file, "w") as f:
+			f.write(self.htmlOut)
 
-	def __str__(self):
-		return f"Header({self.content})"
+class RawTag(Element):
+	
+	def __init__(self, tag: str = None, body: str = None, css = None, properties: dict = None):
+		super().__init__(css = css, body = body)
+		self.tag = tag
+		self.htmlProperties = properties
 
-class Category(Element):
+	@property
+	def __propertiesFormatted(self):
+		output = ""
+		if(self.htmlProperties == None):
+			return output
+		for key, value in zip(self.htmlProperties, self.htmlProperties.values()):
+			output += f"{key} = '{value}' "
+		return output
 
-	def __init__(self, title, *args):
-		self.title = title
-		if len(args) > 0:
-			self.style = args[0]
-		else:
-			self.style = {"color" : "black"}
-		self.content = ""
+	@property
+	def htmlOut(self):
+		if self.tag == None:
+			raise NoneError("A tag has to be provied")
+		elif not type(self.tag) is str:
+			raise TypeError("The tag must be a string")  
+		return f"<{self.tag} {self.__propertiesFormatted}>{self.childHtml}</{self.tag}>"
 
-	def __str__(self):
-		return f"Category({self.title})"
+	@property
+	def childHtml(self):
+		return self.body
 
-	def setContent(self):
-		self.htmlOutput = ""
-		self.htmlOutput = self.htmlOutput + constants.HTML_CATEGORY.format(title = self.title, style = self.formatStyle)
-		self.htmlOutput = self.htmlOutput.replace("categoryBody", self.content)
+class CustomTag(Element):
 
-		
+	def __init__(self, tag: str = None, body: list = None, css = None, properties: dict = None):
+		super().__init__(body = body, css = css)
+		self.tag = tag
+		self.htmlProperties = properties
+
+	@property
+	def __propertiesFormatted(self):
+		output = ""
+		if(self.htmlProperties == None):
+			return output
+		for key, value in zip(self.htmlProperties, self.htmlProperties.values()):
+			output += f"{key} = '{value}' "
+		return output
+
+	@property
+	def htmlOut(self):
+		if self.tag == None:
+			raise NoneError("A tag has to be provied")
+		elif not type(self.tag) is str:
+			raise TypeError("The tag must be a string")  
+		return f"<{self.tag} {self.__propertiesFormatted}>{self.childHtml}</{self.tag}>"
+
+class Div(CustomTag):
+
+	def __init__(self, body: list = None, css=None, properties: dict = None):
+		super().__init__("div", body, css, properties)
