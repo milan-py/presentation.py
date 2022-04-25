@@ -30,8 +30,6 @@ class Credits(Element):
         <div style = "position: fixed; bottom: 1%; right: 2%; padding-left: 10px; padding-right: 10px; border-radius: 30px; color: {color}; background-color: {backgroundColor}; box-shadow: 0px 0px 50px 5px rgba(0,0,0,0.54);">
             {credits}
         </div>
-
-		
 	"""
 
 	def __init__(self, body: list = None, color = None, backgroundColor = None):

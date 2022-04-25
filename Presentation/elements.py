@@ -2,6 +2,7 @@ from Presentation.utils import *
 import Presentation.cssElements as cssElements
 
 class Element:
+
 	def __init__(self, body = None):
 		self.css = cssElements
 		self.body = body
@@ -29,7 +30,7 @@ class RawTag(Element):
 		self.htmlProperties = properties
 
 	@property
-	def __propertiesFormatted(self):
+	def propertiesFormatted(self):
 		output = ""
 		if(self.htmlProperties == None):
 			return output
@@ -43,7 +44,7 @@ class RawTag(Element):
 			raise NoneError("A tag has to be provied")
 		elif not type(self.tag) is str:
 			raise TypeError("The tag must be a string")  
-		return f"<{self.tag} {self.__propertiesFormatted}>{self.childHtml}</{self.tag}>"
+		return f"<{self.tag} {self.propertiesFormatted}>{self.childHtml}</{self.tag}>"
 
 	@property
 	def childHtml(self):
@@ -57,7 +58,7 @@ class CustomTag(Element):
 		self.htmlProperties = properties
 
 	@property
-	def __propertiesFormatted(self):
+	def propertiesFormatted(self):
 		output = ""
 		if(self.htmlProperties == None):
 			return output
@@ -71,7 +72,7 @@ class CustomTag(Element):
 			raise NoneError("A tag has to be provied")
 		elif not type(self.tag) is str:
 			raise TypeError("The tag must be a string")  
-		return f"<{self.tag} {self.__propertiesFormatted}>{self.childHtml}</{self.tag}>"
+		return f"<{self.tag} {self.propertiesFormatted}>{self.childHtml}</{self.tag}>"
 
 class Div(CustomTag):
 	def __init__(self, body: list = None, properties: dict = None):

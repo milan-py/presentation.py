@@ -26,6 +26,18 @@ if __name__ == "__main__":
     css = CssClass("lol", {"color" : "Black", "border-radius" : "20px"})
     print(css.cssOut)
 
+class CssId(CssClass):
+
+    def __init__(self, classname: str, properties: dict = None):
+        super().__init__(classname, properties)
+
+    @property
+    def cssOut(self):
+        return f"""#{self.classname}{{
+            {'''
+            '''.join(f"{key}: {value};" for key, value in zip(self.properties, self.properties.values()))}
+        }}"""
+
 class CssTag:
     def __init__(self, classes: list = None):
         self.classes = classes
