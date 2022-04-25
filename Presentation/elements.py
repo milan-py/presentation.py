@@ -1,14 +1,9 @@
-class NoneError(Exception):
-
-	def __init__(self, message):
-		super().__init__()
-
-	def __str__(self):
-		return f"Presentation NoneError: {self.message}"
+from Presentation.utils import *
+import Presentation.cssElements as cssElements
 
 class Element:
-	def __init__(self, body = None, css = None):
-		self.css = css
+	def __init__(self, body = None):
+		self.css = cssElements
 		self.body = body
 
 	def __str__(self):
@@ -28,8 +23,8 @@ class Element:
 
 class RawTag(Element):
 	
-	def __init__(self, tag: str = None, body: str = None, css = None, properties: dict = None):
-		super().__init__(css = css, body = body)
+	def __init__(self, tag: str = None, body: str = None, properties: dict = None):
+		super().__init__(body = body)
 		self.tag = tag
 		self.htmlProperties = properties
 
@@ -56,8 +51,8 @@ class RawTag(Element):
 
 class CustomTag(Element):
 
-	def __init__(self, tag: str = None, body: list = None, css = None, properties: dict = None):
-		super().__init__(body = body, css = css)
+	def __init__(self, tag: str = None, body: list = None, properties: dict = None):
+		super().__init__(body = body)
 		self.tag = tag
 		self.htmlProperties = properties
 
@@ -79,6 +74,5 @@ class CustomTag(Element):
 		return f"<{self.tag} {self.__propertiesFormatted}>{self.childHtml}</{self.tag}>"
 
 class Div(CustomTag):
-
-	def __init__(self, body: list = None, css=None, properties: dict = None):
-		super().__init__("div", body, css, properties)
+	def __init__(self, body: list = None, properties: dict = None):
+		super().__init__("div", body, properties)

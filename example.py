@@ -1,20 +1,30 @@
-import Presentation.elements as el
-import Presentation.widgets as wg
+from Presentation.elements import *
+from Presentation.widgets import *
+import Presentation.cssElements as css
 
-element = wg.Document(
+cssclass = css.CssClass("hello", {
+	"border-radius" : 
+	"10px", 
+	"background-color" : "black", 
+	"text-decoration" : "none"
+})
+
+element = Document(
 	title = "HELO",
 	body = [
-		el.Div([
-			el.CustomTag("a", properties = {"href" : "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}, body = [
-				el.RawTag("h1", body = "Cool youtube video"),
-				el.RawTag("p", body = "Trust me it's not a rick roll"),
+		Div(properties = {"class" : "hello"}, body = [
+			CustomTag("a", properties = {"href" : "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}, body = [
+				RawTag("h1", body = "Cool youtube video"),
+				RawTag("p", body = "Trust me it's not a rick roll"),
 			])
 		]),
-		wg.Credits(backgroundcolor = "blue", color = "gray", body = [
-			el.RawTag("p", body = "my stuff")
+		Credits(backgroundColor = "blue", color = "white", body = [
+			RawTag("h1", body = "my stuff")
 		])
-	]
+	],
+	css = css.CssTag([
+		cssclass
+	])
 )
-
 
 element.writeFile("test.html")
