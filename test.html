@@ -1,28 +1,98 @@
 <!DOCTYPE html>
-	<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>HELO</title>
-	</head>
-	<body>
-			<div class = 'category' onclick = 'present(this)' >	<h1 >lol</h1>
-	<p >Text</p></div>
-		<style>
-.category{
-            cursor: pointer;
-            margin-top: 10px;
-            margin-right: 1%;
-            padding-left: 15px;
-            padding-right: 15px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            background-color: rgb(231, 231, 231);
-            border-radius: 10px;
-            transform: scale(1);
-        }
-</style>
-	</body>
-	</html>
-	
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HELO</title>
+</head>
+
+<body>
+	<div class='category' onclick='present(this, 2000)'>
+		<h1>lol</h1>
+		<p>Text</p>
+	</div>
+	<style>
+		.category {
+			cursor: pointer;
+			margin-top: 10px;
+			margin-right: 1%;
+			padding-left: 15px;
+			padding-right: 15px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			background-color: rgb(231, 231, 231);
+			border-radius: 10px;
+			transform: scale(1);
+		}
+	</style>
+	<script>
+		function stop(time){
+			console.debug("stop()");
+            let element = document.getElementById("centeredCategory");
+            element.id = null;
+
+			element.animate([{ opacity: "0" }
+            ], { duration: time });
+
+			zoom(element, 1, time);
+			setTimeout(() => {
+                element.style.opacity = "0";
+                element.remove();
+            }, time-20);
+		}
+
+
+		function zoom(element, scale, time) {
+			console.debug("zoom()");
+			element.animate([{ transform: "scale(" + scale + ")" }
+			], { duration: time, easing: "cubic-bezier(.77,0,0,1.06)" });
+
+			setTimeout(() => { element.style.transform = "scale(" + scale + ")"; }, time-20);
+		}
+
+
+		function present(element, time) {
+			console.debug("present()");
+            const clone = element.cloneNode(true);
+            clone.id = "centeredCategory";
+			clone.style.opacity = "0";
+
+			let centercontainer = document.createElement("div");
+
+			centercontainer.style = "display: flex; position: fixed; justify-content: center; align-items: center; top: 20%; z-index: 5; width: 100%;"
+
+			document.body.appendChild(centercontainer);
+
+			centercontainer.appendChild(clone);
+
+			clone.style.zindex = "5";
+			zoom(clone, 1.8, time);
+
+            clone.animate([{ opacity: "1" }
+            ], { duration: time });
+
+
+			let eventfunc = event => {
+                let ignore = document.getElementById("centeredCategory");
+				stop(time);
+                if(!(event.target === ignore || ignore.contains(event.target))){
+                    window.removeEventListener("click", eventfunc);
+                }
+            };
+
+			setTimeout(() => {window.addEventListener("click", eventfunc);}, time/2);
+
+			setTimeout(() => {
+				clone.style.opacity = "1";
+			}, time-20)
+		}
+		
+
+	</script>
+</body>
+
+
+
+</html>

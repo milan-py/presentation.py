@@ -56,6 +56,8 @@ class CustomTag(Element):
 		super().__init__(body = body)
 		self.tag = tag
 		self.htmlProperties = properties
+		if self.htmlProperties == None:
+			self.htmlProperties = dict()
 
 	@property
 	def propertiesFormatted(self):

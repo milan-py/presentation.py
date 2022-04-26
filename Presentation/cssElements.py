@@ -22,6 +22,9 @@ class CssClass:
     def __eq__(self, other):
         return self.classname == other.classname
 
+    def __add__(self, other):
+        return self.properties + other.properties
+
 if __name__ == "__main__":
     css = CssClass("lol", {"color" : "Black", "border-radius" : "20px"})
     print(css.cssOut)

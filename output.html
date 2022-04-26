@@ -1,27 +1,16 @@
-from Presentation.elements import CustomTag, RawTag
-from Presentation.cssElements import CssClass
-
-# TODO add functionality with javascript
-
-class Category(CustomTag):
-
-	def __init__(self, body: list = None, properties: dict = None):
-		super().__init__("div", body, properties)
-
-	@property
-	def	htmlOut(self):
-		if self.htmlProperties == None:
-			self.htmlProperties = dict()
-		if self.htmlProperties.get("class") == None:
-			self.htmlProperties["class"] = "category"
-		if self.htmlProperties.get("onclick") == None:
-			self.htmlProperties["onclick"] = "present(this, 1000)"
-		return f"<{self.tag} {self.propertiesFormatted}>{self.childHtml}</{self.tag}>"
-
-class PresentationJs(RawTag):
-	def __init__(self):
-		tag = "script"
-		body = """
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>HELO</title>
+	</head>
+	<body>
+			<div onclick = 'present(this, 100)' class = 'category' >	<h1 >lol</h1>
+	<p >Text</p></div>
+	<div class = 'category' onclick = 'present(this, 1000)' >	<h1 >Second</h1></div>
+	<script >
 			function stop(time){
 				console.debug("stop()");
         	    let element = document.getElementById("centeredCategory");
@@ -82,40 +71,21 @@ class PresentationJs(RawTag):
 					clone.style.opacity = "1";
 				}, time-20)
 			}
-		"""
-		super().__init__(tag = tag, body = body)
-
-class CategoryCss(CssClass):
-	STANDARD = {
-		"cursor": "pointer",
-
-        "margin-top": "10px",
-        "margin-right": "1%",
-
-        "padding-left": "15px",
-        "padding-right": "15px",
-        "padding-top": "5px",
-        "padding-bottom": "5px",
-		
-        "background-color": "rgb(231, 231, 231)",
-        "border-radius": "10px",
-        "transform": "scale(1)",
-	}
-
-	def __init__(self, classname: str = None, properties: dict = None):
-		super().__init__(classname, properties)
-
-	@property
-	def cssOut(self):
-		if self.classname == None:
-			self.classname = "category"
-
-		if self.properties == None:
-			self.properties = dict()
-		for key, value in zip(self.STANDARD, self.STANDARD.values()):
-			if self.properties.get(key) == None:
-				self.properties[key] = value
-		return f""".{self.classname}{{
-            {'''
-            '''.join(f"{key}: {value};" for key, value in zip(self.properties, self.properties.values()))}
-        }}"""
+		</script>
+		<style>
+.category{
+            cursor: pointer;
+            margin-top: 10px;
+            margin-right: 1%;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: rgb(231, 231, 231);
+            border-radius: 10px;
+            transform: scale(1);
+        }
+</style>
+	</body>
+	</html>
+	
