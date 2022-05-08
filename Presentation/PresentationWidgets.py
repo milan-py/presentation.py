@@ -1,8 +1,6 @@
 from Presentation.elements import CustomTag, RawTag
 from Presentation.cssElements import CssClass
 
-# TODO add functionality with javascript
-
 class Category(CustomTag):
 
 	def __init__(self, body: list = None, properties: dict = None):
@@ -18,7 +16,7 @@ class Category(CustomTag):
 			self.htmlProperties["onclick"] = "present(this, 1000)"
 		return f"<{self.tag} {self.propertiesFormatted}>{self.childHtml}</{self.tag}>"
 
-class PresentationJs(RawTag):
+class PresentationJs(RawTag): #FIXME: an element with an image surpasses the screen width
 	def __init__(self):
 		tag = "script"
 		body = """
